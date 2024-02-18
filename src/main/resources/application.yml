@@ -1,11 +1,11 @@
 server:
-  port: 8084
+  port: 9090
 
 spring:
   application:
     name: API-GATEWAY
   config:
-    import: configserver:http://localhost:8085
+    import: configserver:http://${CONFIG_SERVER_URL:localhost}:9296
   cloud:
     gateway:
       routes:
@@ -33,15 +33,3 @@ spring:
           uri: lb://CATEGORY-SERVICE
           predicates:
             - Path=/categories/**
-
-
-#Etape 4 de notre fichier contenant le guide des étapes à suivre pour la mise en place de notre microservice
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    fetch-registry: true
-#    register-with-eureka: true
-#    service-url:
-#      defaultzone: ${EUREKA_SERVER_ADDRESS:http://localhost:8761/eureka}
-#Nouvelle MAJ le configServer va récupérer sur Github et ApiGateway va récupérer sur le configServer

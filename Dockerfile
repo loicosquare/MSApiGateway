@@ -9,11 +9,12 @@ COPY ${JAR_FILE} svc-apigateway.jar
 # Commande pour exécuter l'application Spring Boot
 ENTRYPOINT ["java", "-jar", "/svc-apigateway.jar"]
 
-# Exposer le port 8084
-EXPOSE 8084
+# Exposer le port 9090
+EXPOSE 9090
 
 #Build the image
 # docker build -t loicsanou/svc-apigateway:0.0.1 .
 
 #Run the container using imageId
-# docker run -d -p8084:8084 -e EUREKA_SERVER_ADDRESS=http://host.docker.internal:8761/eureka --name svc-apigateway <imageId>
+# docker run -d -p9090:9090 -e CONFIG_SERVER_URL=host.docker.internal -e EUREKA_SERVER_ADDRESS=http://host.docker.internal:8761/eureka --name svc-apigateway <imageId>
+# docker run -d -p9090:9090 -e CONFIG_SERVER_URL=http://host.docker.internal:8085/ -e EUREKA_SERVER_ADDRESS=http://host.docker.internal:8761/eureka --name svc-apigateway <imageId>
